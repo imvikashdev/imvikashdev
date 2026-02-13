@@ -1,26 +1,228 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
+/* ── Dark Theme (default) ── */
+:root,
+.dark {
+  --background: #000000;
+  --foreground: #e5e5e5;
+  --muted: #737373;
+  --border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-hover-bg: rgba(255, 255, 255, 0.06);
+  --glass-hover-border: rgba(255, 255, 255, 0.12);
+  --accent: #a3a3a3;
+  --green: #22c55e;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --selection-bg: rgba(255, 255, 255, 0.15);
+  --selection-color: #ffffff;
+  --scrollbar-thumb: rgba(255, 255, 255, 0.1);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.2);
+  --grid-line: rgba(255, 255, 255, 0.03);
+  --grid-line-major: rgba(34, 197, 94, 0.06);
+  --card-text: #ffffff;
+  --card-text-secondary: rgba(255, 255, 255, 0.5);
+  --card-text-dim: rgba(255, 255, 255, 0.3);
+  --card-text-dimmer: rgba(255, 255, 255, 0.2);
+  --card-text-dimmest: rgba(255, 255, 255, 0.1);
+  --tag-bg: rgba(255, 255, 255, 0.05);
+  --tag-border: rgba(255, 255, 255, 0.05);
+  --tag-text: rgba(255, 255, 255, 0.35);
+  --nav-scrolled-bg: rgba(0, 0, 0, 0.6);
+  --nav-border: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Light Theme ── */
+.light {
+  --background: #fafafa;
   --foreground: #171717;
+  --muted: #737373;
+  --border: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-hover-bg: rgba(255, 255, 255, 0.85);
+  --glass-hover-border: rgba(0, 0, 0, 0.15);
+  --accent: #525252;
+  --green: #16a34a;
+  --amber: #d97706;
+  --red: #dc2626;
+  --selection-bg: rgba(0, 0, 0, 0.12);
+  --selection-color: #000000;
+  --scrollbar-thumb: rgba(0, 0, 0, 0.12);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.25);
+  --grid-line: rgba(0, 0, 0, 0.04);
+  --grid-line-major: rgba(34, 197, 94, 0.08);
+  --card-text: #171717;
+  --card-text-secondary: rgba(0, 0, 0, 0.55);
+  --card-text-dim: rgba(0, 0, 0, 0.35);
+  --card-text-dimmer: rgba(0, 0, 0, 0.2);
+  --card-text-dimmest: rgba(0, 0, 0, 0.08);
+  --tag-bg: rgba(0, 0, 0, 0.04);
+  --tag-border: rgba(0, 0, 0, 0.06);
+  --tag-text: rgba(0, 0, 0, 0.45);
+  --nav-scrolled-bg: rgba(250, 250, 250, 0.8);
+  --nav-border: rgba(0, 0, 0, 0.06);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+  --color-accent: var(--accent);
+  --color-green: var(--green);
+  --color-amber: var(--amber);
+  --color-red: var(--red);
+  --color-card-text: var(--card-text);
+  --color-card-secondary: var(--card-text-secondary);
+  --color-card-dim: var(--card-text-dim);
+  --color-card-dimmer: var(--card-text-dimmer);
+  --color-card-dimmest: var(--card-text-dimmest);
+  --color-tag-bg: var(--tag-bg);
+  --color-tag-border: var(--tag-border);
+  --color-tag-text: var(--tag-text);
+  --color-nav-scrolled: var(--nav-scrolled-bg);
+  --color-nav-border: var(--nav-border);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-color);
+}
+
+/* Glass Card Utility */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-card-hover {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.3s ease;
+}
+
+.glass-card-hover:hover {
+  background: var(--glass-hover-bg);
+  border-color: var(--glass-hover-border);
+  transform: translateY(-2px);
+}
+
+/* Debug Mode Grid Overlay */
+.debug-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+.debug-grid::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-major) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Ticker animation — slides the wrapper left by exactly one copy's width */
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  animation: ticker-scroll 25s linear infinite;
+  will-change: transform;
+}
+
+.ticker-content {
+  padding-right: 3rem; /* matches the gap-12 between copies */
+}
+
+/* Glow pulse */
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Subtle fade in */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+/* Monospace data styling */
+.mono-data {
+  font-family: var(--font-mono), monospace;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
 }
