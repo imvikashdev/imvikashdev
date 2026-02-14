@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 
-/* ── Dark Theme (default) ── */
 :root,
 .dark {
   --background: #000000;
@@ -33,7 +32,6 @@
   --nav-border: rgba(255, 255, 255, 0.05);
 }
 
-/* ── Light Theme ── */
 .light {
   --background: #fafafa;
   --foreground: #171717;
@@ -90,7 +88,6 @@
   --font-mono: var(--font-jetbrains-mono);
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -125,7 +122,6 @@ body {
   color: var(--selection-color);
 }
 
-/* Glass Card Utility */
 .glass-card {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -147,7 +143,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* Debug Mode Grid Overlay */
 .debug-grid {
   position: fixed;
   inset: 0;
@@ -170,7 +165,6 @@ body {
   background-size: 64px 64px;
 }
 
-/* Ticker animation — slides the wrapper left by exactly one copy's width */
 @keyframes ticker-scroll {
   0% {
     transform: translateX(0);
@@ -186,10 +180,9 @@ body {
 }
 
 .ticker-content {
-  padding-right: 3rem; /* matches the gap-12 between copies */
+  padding-right: 3rem;
 }
 
-/* Glow pulse */
 @keyframes glow-pulse {
   0%,
   100% {
@@ -204,7 +197,6 @@ body {
   animation: glow-pulse 2s ease-in-out infinite;
 }
 
-/* Subtle fade in */
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -220,7 +212,6 @@ body {
   animation: fade-in-up 0.6s ease-out forwards;
 }
 
-/* Monospace data styling */
 .mono-data {
   font-family: var(--font-mono), monospace;
   letter-spacing: -0.02em;
